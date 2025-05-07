@@ -8,6 +8,7 @@ const TextInputWithError = ({
   label,
   value,
   onChangeText,
+  onBlur,
   errorMessage,
   placeholder,
   secureTextEntry,
@@ -19,6 +20,7 @@ const TextInputWithError = ({
         style={styles.input}
         value={value}
         onChangeText={onChangeText}
+        onBlur={onBlur}
         placeholder={placeholder}
         placeholderTextColor={'#888'}
         secureTextEntry={secureTextEntry}

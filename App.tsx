@@ -1,27 +1,10 @@
 import React from 'react';
-import {PressableWrapper} from './src/components/atoms/PressableWrapper';
-import {TextInputWithError} from './src/components/molecules/TextInputWithError';
+import {LoginForm} from './src/components/organisms/LoginForm';
 
 const App = () => {
   return (
     <>
-      <TextInputWithError
-        label={'email'}
-        placeholder={'hello'}
-        errorMessage={'hello'}
-      />
-      <TextInputWithError
-        label={'email'}
-        placeholder={'hello'}
-        errorMessage={'hello'}
-      />
-      <TextInputWithError
-        label={'email'}
-        placeholder={'hello'}
-        errorMessage={'hello'}
-      />
-
-      <PressableWrapper label={'hello'} />
+      <LoginForm />
     </>
   );
 };
