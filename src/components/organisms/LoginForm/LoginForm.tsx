@@ -1,14 +1,17 @@
 import {View} from 'react-native';
 import {Controller, useForm} from 'react-hook-form';
-import React from 'react';
+import React, {useState} from 'react';
 import {LoginFormData, LoginNavigationProp, schema} from './LoginForm.type';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {TextInputWithError} from '../../molecules/TextInputWithError';
 import {PressableWrapper} from '../../atoms/PressableWrapper';
 import {useNavigation} from '@react-navigation/native';
+import {Error} from '../../atoms/Error';
 
 const LoginForm = () => {
   const navigation = useNavigation<LoginNavigationProp>();
+  const [loginError, setLoginError] = useState<string | undefined>();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     control,
@@ -28,7 +31,10 @@ const LoginForm = () => {
       data.password === 'academy2025'
     ) {
       navigation.navigate('OTP');
+      setLoginError(undefined);
       reset();
+    } else {
+      setLoginError('Invalid email or password');
     }
   };
   return (
@@ -63,10 +69,16 @@ const LoginForm = () => {
             onChangeText={onChange}
             errorMessage={errors.password?.message}
             value={value}
+            secureTextEntry={!showPassword}
           />
         )}
         name="password"
       />
+      <PressableWrapper
+        label={showPassword ? 'Hide Password' : 'Show Password'}
+        onPress={() => setShowPassword(prev => !prev)}
+      />
+      <Error errorMessage={loginError} />
       <PressableWrapper label={'Login'} onPress={handleSubmit(onSubmit)} />
       <PressableWrapper
         label={'Signup instead?'}
