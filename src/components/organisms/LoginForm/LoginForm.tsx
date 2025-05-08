@@ -30,9 +30,9 @@ const LoginForm = () => {
       data.email === 'academy@eurisko.net' &&
       data.password === 'academy2025'
     ) {
-      navigation.navigate('OTP');
       setLoginError(undefined);
       reset();
+      navigation.replace('OTP');
     } else {
       setLoginError('Invalid email or password');
     }
@@ -82,7 +82,7 @@ const LoginForm = () => {
       <PressableWrapper label={'Login'} onPress={handleSubmit(onSubmit)} />
       <PressableWrapper
         label={'Signup instead?'}
-        onPress={() => navigation.navigate('Signup')}
+        onPress={() => navigation.replace('Signup')}
       />
     </View>
   );
