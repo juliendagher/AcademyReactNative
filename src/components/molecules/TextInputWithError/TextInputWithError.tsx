@@ -1,7 +1,9 @@
-import {View, Text, TextInput} from 'react-native';
+import {View, TextInput} from 'react-native';
 import React from 'react';
 import {TextInputWithErrorProps} from './TextInputWithError.type';
 import {styles} from './TextInputWithError.style';
+import {Error} from '../../atoms/Error';
+import {Label} from '../../atoms/Label';
 
 const TextInputWithError = ({
   style,
@@ -15,7 +17,7 @@ const TextInputWithError = ({
 }: TextInputWithErrorProps) => {
   return (
     <View style={[styles.container, style]}>
-      <Text style={styles.label}>{label}</Text>
+      <Label title={label} />
       <TextInput
         style={styles.input}
         value={value}
@@ -25,7 +27,7 @@ const TextInputWithError = ({
         placeholderTextColor={'#888'}
         secureTextEntry={secureTextEntry}
       />
-      <Text style={styles.errorMessage}>{errorMessage}</Text>
+      <Error errorMessage={errorMessage} />
     </View>
   );
 };
