@@ -5,8 +5,9 @@ import {SignupScreen} from '../../screens/SignupScreen';
 import {OTPScreen} from '../../screens/OTPScreen';
 import { AuthStackParamList } from './AuthenticationNavigator.type';
 
+const Stack = createNativeStackNavigator<AuthStackParamList>();
+
 const AuthenticationNavigator = () => {
-  const Stack = createNativeStackNavigator<AuthStackParamList>();
   return (
     <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="Login">
       <Stack.Screen name="Login" component={LoginScreen} />

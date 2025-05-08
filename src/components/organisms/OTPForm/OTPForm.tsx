@@ -7,9 +7,11 @@ import {TextInputWithError} from '../../molecules/TextInputWithError';
 import {PressableWrapper} from '../../atoms/PressableWrapper';
 import {useNavigation} from '@react-navigation/native';
 import {Error} from '../../atoms/Error';
+import {useAuth} from '../../../hooks/authentication';
 
 const OTPForm = () => {
   const navigation = useNavigation<OTPNavigationProp>();
+  const {login} = useAuth();
   const [OTPError, setOTPError] = useState<string | undefined>();
 
   const {
@@ -27,6 +29,7 @@ const OTPForm = () => {
     if (data.otp === '1234') {
       setOTPError(undefined);
       reset();
+      login();
     } else {
       setOTPError('Invalid OTP');
     }
