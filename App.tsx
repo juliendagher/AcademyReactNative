@@ -1,11 +1,11 @@
 import React from 'react';
-import {LoginForm} from './src/components/organisms/LoginForm';
-
+import {NavigationContainer} from '@react-navigation/native';
+import {RootNavigator} from './src/navigation/RootNavigator';
 const App = () => {
   return (
-    <>
-      <LoginForm />
-    </>
+    <NavigationContainer>
+      <RootNavigator />
+    </NavigationContainer>
   );
 };
 

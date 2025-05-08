@@ -1,3 +1,3 @@
 # Valid Credentials for Login
-email: eurisko@academy.net
+email: academy@eurisko.net
 password; academy2025

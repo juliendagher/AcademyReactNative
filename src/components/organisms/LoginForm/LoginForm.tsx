@@ -1,12 +1,15 @@
 import {View} from 'react-native';
 import {Controller, useForm} from 'react-hook-form';
 import React from 'react';
-import {LoginFormData, schema} from './LoginForm.type';
+import {LoginFormData, LoginNavigationProp, schema} from './LoginForm.type';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {TextInputWithError} from '../../molecules/TextInputWithError';
 import {PressableWrapper} from '../../atoms/PressableWrapper';
+import {useNavigation} from '@react-navigation/native';
 
 const LoginForm = () => {
+  const navigation = useNavigation<LoginNavigationProp>();
+
   const {
     control,
     handleSubmit,
@@ -20,8 +23,13 @@ const LoginForm = () => {
     },
   });
   const onSubmit = (data: LoginFormData) => {
-    console.log(data);
-    reset();
+    if (
+      data.email === 'academy@eurisko.net' &&
+      data.password === 'academy2025'
+    ) {
+      navigation.navigate('OTP');
+      reset();
+    }
   };
   return (
     <View>
@@ -60,6 +68,10 @@ const LoginForm = () => {
         name="password"
       />
       <PressableWrapper label={'Login'} onPress={handleSubmit(onSubmit)} />
+      <PressableWrapper
+        label={'Signup instead?'}
+        onPress={() => navigation.navigate('Signup')}
+      />
     </View>
   );
 };
