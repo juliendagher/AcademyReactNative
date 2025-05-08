@@ -9,6 +9,7 @@ type TextInputWithErrorProps = {
   errorMessage?: string;
   placeholder?: string;
   secureTextEntry?: boolean;
+  maxLength?: number;
 };
 
 export type {TextInputWithErrorProps};

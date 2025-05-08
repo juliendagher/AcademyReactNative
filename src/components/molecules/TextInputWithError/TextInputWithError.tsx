@@ -14,6 +14,7 @@ const TextInputWithError = ({
   errorMessage,
   placeholder,
   secureTextEntry,
+  maxLength,
 }: TextInputWithErrorProps) => {
   return (
     <View style={[styles.container, style]}>
@@ -26,6 +27,7 @@ const TextInputWithError = ({
         placeholder={placeholder}
         placeholderTextColor={'#888'}
         secureTextEntry={secureTextEntry}
+        maxLength={maxLength}
       />
       <Error errorMessage={errorMessage} />
     </View>
