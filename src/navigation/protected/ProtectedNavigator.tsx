@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator<ProtectedStackParamList>();
 
 const ProtectedNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Main" component={MainScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
     </Stack.Navigator>

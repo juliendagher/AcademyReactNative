@@ -1,10 +1,11 @@
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
+import {Products} from '../../components/organisms/Products';
 
 const MainScreen = () => {
   return (
     <View>
-      <Text>MainScreen</Text>
+      <Products />
     </View>
   );
 };

@@ -1,6 +1,6 @@
 type ProtectedStackParamList = {
   Main: undefined;
-  Details: undefined;
+  Details: {id: string};
 };
 
 export type {ProtectedStackParamList};
