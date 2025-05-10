@@ -1,6 +1,14 @@
 import {StyleSheet} from 'react-native';
 
-const styles = StyleSheet.create({
+const styles = (colors: {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+  text: string;
+  title: string;
+  background: string;
+}) =>
+StyleSheet.create({
   // container: {
   //   flex: 1,
   //   backgroundColor: '#fff',
@@ -27,19 +35,19 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'black',
     // marginBottom: 10,
-    backgroundColor: 'blue',
+    backgroundColor: colors.primary,
     alignItems: 'center',
     // justifyContent: 'center',
     // textAlign: 'center',
     borderRadius: 5,
   },
   pressed: {
-    backgroundColor: 'white',
+    backgroundColor: colors.secondary,
   },
   buttonText: {
     fontSize: 15,
     fontWeight: 'bold',
-    color: 'white',
+    color: colors.tertiary,
     lineHeight: 44,
     // textAlign: 'center',
   },

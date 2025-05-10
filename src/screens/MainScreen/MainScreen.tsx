@@ -1,14 +1,13 @@
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import {Products} from '../../components/organisms/Products';
 import {useTheme} from '../../hooks/theme';
 
 const MainScreen = () => {
-  const {isDark} = useTheme();
+  const {colors} = useTheme();
 
   return (
-    <View>
-      <Text>Theme: {isDark ? 'dark' : 'light'}</Text>
+    <View style={{backgroundColor: colors.background, height: '100%'}}>
       <Products />
     </View>
   );

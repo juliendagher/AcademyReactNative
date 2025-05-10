@@ -2,17 +2,20 @@ import {Text, Pressable} from 'react-native';
 import React from 'react';
 import {styles} from './PressableWrapper.style';
 import {PressableWrapperProps} from './PressableWrapper.type';
+import {useTheme} from '../../../hooks/theme';
 
 const PressableWrapper = ({label, onPress, style}: PressableWrapperProps) => {
+  const {colors} = useTheme();
+  const themedStyles = styles(colors);
   return (
     <Pressable
       style={({pressed}) => [
-        styles.button,
-        pressed ? styles.pressed : {},
+        themedStyles.button,
+        pressed ? themedStyles.pressed : {},
         style,
       ]}
       onPress={onPress}>
-      <Text style={styles.buttonText}>{label}</Text>
+      <Text style={themedStyles.buttonText}>{label}</Text>
     </Pressable>
   );
 };

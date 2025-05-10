@@ -6,9 +6,9 @@ import {useTheme} from '../../hooks/theme';
 
 const SettingsScreen = () => {
   const {logout} = useAuth();
-  const {toggle} = useTheme();
+  const {toggle, colors} = useTheme();
   return (
-    <View>
+    <View style={{backgroundColor: colors.background, height: '100%'}}>
       <PressableWrapper label="Log out" onPress={logout} />
       <PressableWrapper label="Toggle Theme" onPress={toggle} />
     </View>

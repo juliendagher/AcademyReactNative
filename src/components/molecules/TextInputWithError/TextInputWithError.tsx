@@ -4,6 +4,7 @@ import {TextInputWithErrorProps} from './TextInputWithError.type';
 import {styles} from './TextInputWithError.style';
 import {Error} from '../../atoms/Error';
 import {Label} from '../../atoms/Label';
+import {useTheme} from '../../../hooks/theme';
 
 const TextInputWithError = ({
   style,
@@ -16,11 +17,13 @@ const TextInputWithError = ({
   secureTextEntry,
   maxLength,
 }: TextInputWithErrorProps) => {
+  const {colors} = useTheme();
+  const themedStyles = styles(colors);
   return (
-    <View style={[styles.container, style]}>
+    <View style={[themedStyles.container, style]}>
       <Label title={label} />
       <TextInput
-        style={styles.input}
+        style={themedStyles.input}
         value={value}
         onChangeText={onChangeText}
         onBlur={onBlur}

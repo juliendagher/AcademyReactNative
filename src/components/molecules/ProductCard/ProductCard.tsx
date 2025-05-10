@@ -6,16 +6,19 @@ import {styles} from './ProductCard.style';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {ProtectedStackParamList} from '../../../navigation';
+import { useTheme } from '../../../hooks/theme';
 
 const ProductCard = ({id, title, price, mainImageUri}: ProductCardProps) => {
+  const {colors} = useTheme();
+  const themedStyles = styles(colors);
   const navigation =
     useNavigation<NativeStackNavigationProp<ProtectedStackParamList, 'Main'>>();
   console.log(id);
   return (
     <Pressable
-      style={styles.container}
+      style={themedStyles.container}
       onPress={() => navigation.navigate('Details', {id: id})}>
-      <Image style={styles.image} source={{uri: mainImageUri}} />
+      <Image style={themedStyles.image} source={{uri: mainImageUri}} />
       <View>
         <Label title={title} />
         <Text>Price: {price}$</Text>

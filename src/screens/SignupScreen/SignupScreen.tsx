@@ -1,10 +1,12 @@
 import {View} from 'react-native';
 import React from 'react';
 import {SignupForm} from '../../components/organisms/SignupForm';
+import {useTheme} from '../../hooks/theme';
 
 const SignupScreen = () => {
+  const {colors} = useTheme();
   return (
-    <View>
+    <View style={{backgroundColor: colors.background, height: '100%'}}>
       <SignupForm />
     </View>
   );

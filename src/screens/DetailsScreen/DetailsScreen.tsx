@@ -6,17 +6,20 @@ import {data} from '../../assets/jsons/Products.json';
 import {Error} from '../../components/atoms/Error';
 import {Label} from '../../components/atoms/Label';
 import {PressableWrapper} from '../../components/atoms/PressableWrapper';
-import { styles } from './DetailsScreen.style';
+import {styles} from './DetailsScreen.style';
+import {useTheme} from '../../hooks/theme';
 
 const DetailsScreen = () => {
+  const {colors} = useTheme();
+  const themedStyles = styles(colors);
   const {params} = useRoute<DetailsRouteProp>();
   const {id} = params;
 
   const product = data.find(item => item._id === id);
 
   return product ? (
-    <ScrollView>
-      <Image style={styles.image} source={{uri: product.images[0].url}} />
+    <ScrollView style={{backgroundColor: colors.background, height: '100%'}}>
+      <Image style={themedStyles.image} source={{uri: product.images[0].url}} />
       <Label title={product.title} />
       <Text>Price: {product.price}$</Text>
       <Text>{product.description}</Text>
