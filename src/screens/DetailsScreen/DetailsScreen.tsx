@@ -18,7 +18,7 @@ const DetailsScreen = () => {
   const product = data.find(item => item._id === id);
 
   return product ? (
-    <ScrollView style={{backgroundColor: colors.background, height: '100%'}}>
+    <ScrollView style={{backgroundColor: colors.background, height: '100%', padding: '10%', gap:'2%'}}>
       <Image style={themedStyles.image} source={{uri: product.images[0].url}} />
       <Label title={product.title} />
       <Text>Price: {product.price}$</Text>

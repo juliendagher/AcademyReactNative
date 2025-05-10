@@ -38,7 +38,7 @@ const LoginForm = () => {
     }
   };
   return (
-    <View>
+    <View style={{gap: '2%'}}>
       <Controller
         control={control}
         rules={{

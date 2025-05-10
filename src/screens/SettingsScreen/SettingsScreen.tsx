@@ -8,7 +8,7 @@ const SettingsScreen = () => {
   const {logout} = useAuth();
   const {toggle, colors} = useTheme();
   return (
-    <View style={{backgroundColor: colors.background, height: '100%'}}>
+    <View style={{backgroundColor: colors.background, height: '100%', gap: '2%', justifyContent: 'center', padding: '10%'}}>
       <PressableWrapper label="Log out" onPress={logout} />
       <PressableWrapper label="Toggle Theme" onPress={toggle} />
     </View>

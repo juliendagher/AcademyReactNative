@@ -7,7 +7,7 @@ const LoginScreen = () => {
   const {colors} = useTheme();
 
   return (
-    <View style={{backgroundColor: colors.background, height: '100%'}}>
+    <View style={{backgroundColor: colors.background, height: '100%', padding: '10%', justifyContent: 'center'}}>
       <LoginForm />
     </View>
   );

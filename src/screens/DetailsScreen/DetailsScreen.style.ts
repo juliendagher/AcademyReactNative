@@ -14,6 +14,8 @@ const styles = (colors: {
       backgroundColor: colors.background,
       alignItems: 'center',
       justifyContent: 'center',
+      padding: '10%',
+      height: '100%',
     },
     image: {
       height: 350,
