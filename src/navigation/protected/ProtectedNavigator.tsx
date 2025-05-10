@@ -6,8 +6,7 @@ import {
   ProtectedTabParamList,
 } from './ProtectedNavigator.type';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { SettingsScreen } from '../../screens/SettingsScreen';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {SettingsScreen} from '../../screens/SettingsScreen';
 
 const Stack = createNativeStackNavigator<ProtectedStackParamList>();
 const Tab = createBottomTabNavigator<ProtectedTabParamList>();
@@ -24,10 +23,7 @@ const HomeStack = () => {
 const ProtectedNavigator = () => {
   return (
     <Tab.Navigator screenOptions={{headerShown: false}}>
-      <Tab.Screen
-        name="Home"
-        component={HomeStack}
-      />
+      <Tab.Screen name="Home" component={HomeStack} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
