@@ -2,7 +2,7 @@ import {View, Text, Image, ScrollView} from 'react-native';
 import React from 'react';
 import {useRoute} from '@react-navigation/native';
 import {DetailsRouteProp} from './DetailsScreen.type';
-import {data} from '../../assets/Products.json';
+import {data} from '../../assets/jsons/Products.json';
 import {Error} from '../../components/atoms/Error';
 import {Label} from '../../components/atoms/Label';
 import {PressableWrapper} from '../../components/atoms/PressableWrapper';

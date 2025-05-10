@@ -1,7 +1,7 @@
 import {FlatList} from 'react-native';
 import React from 'react';
 import {ProductCard} from '../../molecules/ProductCard';
-import {data} from '../../../assets/Products.json';
+import {data} from '../../../assets/jsons/Products.json';
 import {styles} from './Products.style';
 
 const Products = () => {

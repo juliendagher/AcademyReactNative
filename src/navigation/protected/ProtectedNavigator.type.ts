@@ -3,4 +3,9 @@ type ProtectedStackParamList = {
   Details: {id: string};
 };
 
-export type {ProtectedStackParamList};
+type ProtectedTabParamList = {
+  Home: undefined;
+  Settings: undefined;
+};
+
+export type {ProtectedStackParamList, ProtectedTabParamList};
