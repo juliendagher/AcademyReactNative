@@ -8,6 +8,7 @@ import {Label} from '../../components/atoms/Label';
 import {PressableWrapper} from '../../components/atoms/PressableWrapper';
 import {styles} from './DetailsScreen.style';
 import {useTheme} from '../../hooks/theme';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const DetailsScreen = () => {
   const {colors} = useTheme();
@@ -18,14 +19,21 @@ const DetailsScreen = () => {
   const product = data.find(item => item._id === id);
 
   return product ? (
-    <ScrollView style={{backgroundColor: colors.background, height: '100%', padding: '10%', gap:'2%'}}>
-      <Image style={themedStyles.image} source={{uri: product.images[0].url}} />
-      <Label title={product.title} />
-      <Text style={themedStyles.text}>Price: {product.price}$</Text>
-      <Text style={themedStyles.description}>{product.description}</Text>
-      <PressableWrapper label="Add to cart" />
-      <PressableWrapper label="Share" />
-    </ScrollView>
+    <SafeAreaView style={themedStyles.container}>
+      <ScrollView>
+        <Image
+          style={themedStyles.image}
+          source={{uri: product.images[0].url}}
+        />
+        <View style={themedStyles.detailsWrapper}>
+          <Label title={product.title} />
+          <Text style={themedStyles.text}>Price: {product.price}$</Text>
+          <Text style={themedStyles.description}>{product.description}</Text>
+          <PressableWrapper label="Add to cart" />
+          <PressableWrapper label="Share" />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   ) : (
     <View>
       <Error errorMessage="Couldn't find requested product" />

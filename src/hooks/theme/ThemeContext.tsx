@@ -10,8 +10,8 @@ const ThemeProvider = ({children}: {children: ReactNode}) => {
     primary: isDark ? '#3F4F44' : '#FAF6E9',
     secondary: isDark ? '#A27B5C' : '#DDEB9D',
     tertiary: isDark ? '#DCD7C9' : '#A0C878',
-    text: isDark ? '#fff' : '#000',
-    title: isDark ? '#fff' : '#000',
+    text: isDark ? '#FFFDF6' : '#3F4F44',
+    title: isDark ? '#FFFDF6' : '#3F4F44',
     background: isDark ? '#2C3930' : '#FFFDF6',
   };
   return (

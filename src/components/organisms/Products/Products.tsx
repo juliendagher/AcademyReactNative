@@ -3,12 +3,15 @@ import React from 'react';
 import {ProductCard} from '../../molecules/ProductCard';
 import {data} from '../../../assets/jsons/Products.json';
 import {styles} from './Products.style';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const Products = () => {
   return (
+    <SafeAreaView>
       <FlatList
         data={data}
         numColumns={2}
+        columnWrapperStyle={styles.columnWrapper}
         contentContainerStyle={styles.productContainer}
         renderItem={({item}) => (
           <ProductCard
@@ -20,6 +23,7 @@ const Products = () => {
         )}
         keyExtractor={item => item._id}
       />
+    </SafeAreaView>
   );
 };
 

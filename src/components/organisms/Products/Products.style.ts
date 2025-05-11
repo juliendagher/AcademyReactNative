@@ -5,6 +5,10 @@ const styles = StyleSheet.create({
     gap: 5,
     padding: 10,
   },
+  columnWrapper: {
+    justifyContent: 'space-between',
+    marginBottom: 5,
+  },
 });
 
 export {styles};

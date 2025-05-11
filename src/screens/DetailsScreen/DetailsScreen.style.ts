@@ -10,17 +10,19 @@ const styles = (colors: {
 }) =>
   StyleSheet.create({
     container: {
-      flex: 1,
       backgroundColor: colors.background,
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '10%',
       height: '100%',
+      gap: '2%',
+    },
+    detailsWrapper: {
+      padding: 20,
+      gap: 10,
     },
     image: {
       width: '100%',
-      aspectRatio: '3/4',
-      borderRadius: 10,
+      aspectRatio: '1/1',
+      height: 'auto',
+      borderRadius: 30,
       marginBottom: 10,
     },
     text: {
@@ -33,7 +35,6 @@ const styles = (colors: {
       fontFamily: 'Ubuntu-Regular',
       color: colors.text,
     },
-
   });
 
 export {styles};
