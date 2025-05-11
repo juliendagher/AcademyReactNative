@@ -1,13 +1,14 @@
 import {StyleSheet} from 'react-native';
+import { scale, verticalScale } from '../../../utils/scaling/scale';
 
 const styles = StyleSheet.create({
   productContainer: {
-    gap: 5,
-    padding: 10,
+    gap: scale(5),
+    padding: scale(10),
   },
   columnWrapper: {
     justifyContent: 'space-between',
-    marginBottom: 5,
+    marginBottom: verticalScale(5),
   },
 });
 

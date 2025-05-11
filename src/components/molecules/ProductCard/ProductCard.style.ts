@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { normalizeFontSize, scale, verticalScale } from '../../../utils/scaling/scale';
 
 const styles = (colors: {
   primary: string;
@@ -11,18 +12,18 @@ const styles = (colors: {
   StyleSheet.create({
     container: {
       backgroundColor: colors.primary,
-      borderRadius: 10,
-      padding: 20,
-      gap: 10,
-      width: 180,
+      borderRadius: scale(10),
+      padding: scale(10),
+      gap: verticalScale(10),
+      width: '48%',
     },
     image: {
       width: '100%',
       aspectRatio: '1/1',
-      borderRadius: 10,
+      borderRadius: scale(10),
     },
     text: {
-      fontSize: 15,
+      fontSize: normalizeFontSize(15),
       fontFamily: 'Ubuntu-Light',
       color: colors.text,
     },

@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { normalizeFontSize } from '../../../utils/scaling/scale';
 
 const styles = (colors: {
   primary: string;
@@ -10,9 +11,8 @@ const styles = (colors: {
 }) =>
   StyleSheet.create({
     label: {
-      fontSize: 20,
+      fontSize: normalizeFontSize(20),
       fontFamily: 'Ubuntu-Bold',
-      // fontWeight: 'bold',
       color: colors.title,
     },
   });

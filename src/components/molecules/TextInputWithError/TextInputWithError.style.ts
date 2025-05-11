@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { scale, verticalScale } from '../../../utils/scaling/scale';
 
 const styles = (colors: {
   primary: string;
@@ -10,14 +11,14 @@ const styles = (colors: {
 }) =>
   StyleSheet.create({
     container: {
-      gap: 5,
+      gap: scale(5),
     },
     input: {
       fontFamily: 'Ubuntu-Regular',
-      height: 44,
-      borderWidth: 1,
+      height: verticalScale(44),
+      borderWidth: scale(1),
       borderColor: colors.tertiary,
-      borderRadius: 5,
+      borderRadius: scale(5),
       color: colors.text,
     },
   });

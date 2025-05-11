@@ -8,6 +8,7 @@ import {PressableWrapper} from '../../atoms/PressableWrapper';
 import {useNavigation} from '@react-navigation/native';
 import {Error} from '../../atoms/Error';
 import {useAuth} from '../../../hooks/authentication';
+import { styles } from './OTPForm.style';
 
 const OTPForm = () => {
   const navigation = useNavigation<OTPNavigationProp>();
@@ -35,7 +36,7 @@ const OTPForm = () => {
     }
   };
   return (
-    <View style={{gap: '2%'}}>
+    <View style={styles.container}>
       <Controller
         control={control}
         rules={{

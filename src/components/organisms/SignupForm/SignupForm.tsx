@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {KeyboardAvoidingView} from 'react-native';
 import {Controller, useForm} from 'react-hook-form';
 import React, {useState} from 'react';
 import {SignupFormData, SignupNavigationProp, schema} from './SignupForm.type';
@@ -6,6 +6,7 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import {TextInputWithError} from '../../molecules/TextInputWithError';
 import {PressableWrapper} from '../../atoms/PressableWrapper';
 import {useNavigation} from '@react-navigation/native';
+import { styles } from './SignupForm.style';
 
 const SignupForm = () => {
   const navigation = useNavigation<SignupNavigationProp>();
@@ -28,7 +29,7 @@ const SignupForm = () => {
     console.log(data);
   };
   return (
-    <View style={{gap: '2%'}}>
+    <KeyboardAvoidingView style={styles.container}>
       <Controller
         control={control}
         rules={{
@@ -107,7 +108,7 @@ const SignupForm = () => {
         label={'Login instead?'}
         onPress={() => navigation.replace('Login')}
       />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

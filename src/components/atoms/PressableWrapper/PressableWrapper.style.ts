@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {scale, verticalScale} from '../../../utils/scaling/scale';
 
 const styles = (colors: {
   primary: string;
@@ -8,22 +9,22 @@ const styles = (colors: {
   title: string;
   background: string;
 }) =>
-StyleSheet.create({
-  button: {
-    height: 44,
-    backgroundColor: colors.primary,
-    alignItems: 'center',
-    borderRadius: 5,
-  },
-  pressed: {
-    backgroundColor: colors.secondary,
-  },
-  buttonText: {
-    fontSize: 15,
-    fontFamily: 'Ubuntu-Bold',
-    color: colors.tertiary,
-    lineHeight: 44,
-  },
-});
+  StyleSheet.create({
+    button: {
+      height: verticalScale(44),
+      backgroundColor: colors.primary,
+      alignItems: 'center',
+      borderRadius: scale(5),
+    },
+    pressed: {
+      backgroundColor: colors.secondary,
+    },
+    buttonText: {
+      fontSize: scale(15),
+      fontFamily: 'Ubuntu-Bold',
+      color: colors.tertiary,
+      lineHeight: verticalScale(44),
+    },
+  });
 
 export {styles};
