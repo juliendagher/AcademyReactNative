@@ -21,8 +21,8 @@ const DetailsScreen = () => {
     <ScrollView style={{backgroundColor: colors.background, height: '100%', padding: '10%', gap:'2%'}}>
       <Image style={themedStyles.image} source={{uri: product.images[0].url}} />
       <Label title={product.title} />
-      <Text>Price: {product.price}$</Text>
-      <Text>{product.description}</Text>
+      <Text style={themedStyles.text}>Price: {product.price}$</Text>
+      <Text style={themedStyles.description}>{product.description}</Text>
       <PressableWrapper label="Add to cart" />
       <PressableWrapper label="Share" />
     </ScrollView>

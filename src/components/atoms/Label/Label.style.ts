@@ -11,7 +11,8 @@ const styles = (colors: {
   StyleSheet.create({
     label: {
       fontSize: 20,
-      fontWeight: 'bold',
+      fontFamily: 'Ubuntu-Bold',
+      // fontWeight: 'bold',
       color: colors.title,
     },
   });

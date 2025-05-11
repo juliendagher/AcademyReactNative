@@ -21,7 +21,7 @@ const ProductCard = ({id, title, price, mainImageUri}: ProductCardProps) => {
       <Image style={themedStyles.image} source={{uri: mainImageUri}} />
       <View>
         <Label title={title} />
-        <Text>Price: {price}$</Text>
+        <Text style={themedStyles.text} >Price: {price}$</Text>
       </View>
     </Pressable>
   );

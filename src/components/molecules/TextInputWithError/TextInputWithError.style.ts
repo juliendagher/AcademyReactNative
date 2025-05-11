@@ -13,6 +13,7 @@ const styles = (colors: {
       gap: 5,
     },
     input: {
+      fontFamily: 'Ubuntu-Regular',
       height: 44,
       borderWidth: 1,
       borderColor: colors.tertiary,

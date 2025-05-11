@@ -18,11 +18,22 @@ const styles = (colors: {
       height: '100%',
     },
     image: {
-      height: 350,
       width: '100%',
+      aspectRatio: '3/4',
       borderRadius: 10,
       marginBottom: 10,
     },
+    text: {
+      fontSize: 15,
+      fontFamily: 'Ubuntu-Light',
+      color: colors.text,
+    },
+    description: {
+      fontSize: 15,
+      fontFamily: 'Ubuntu-Regular',
+      color: colors.text,
+    },
+
   });
 
 export {styles};

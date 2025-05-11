@@ -11,16 +11,20 @@ const styles = (colors: {
   StyleSheet.create({
     container: {
       backgroundColor: colors.primary,
-      borderWidth: 1,
       borderRadius: 10,
       padding: 20,
       gap: 10,
       width: 180,
     },
     image: {
-      width: 110,
-      height: 110,
+      width: '100%',
+      aspectRatio: '1/1',
       borderRadius: 10,
+    },
+    text: {
+      fontSize: 15,
+      fontFamily: 'Ubuntu-Light',
+      color: colors.text,
     },
   });
 
