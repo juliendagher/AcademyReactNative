@@ -6,27 +6,45 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import {TextInputWithError} from '../../molecules/TextInputWithError';
 import {PressableWrapper} from '../../atoms/PressableWrapper';
 import {useNavigation} from '@react-navigation/native';
-import { styles } from './SignupForm.style';
+import {styles} from './SignupForm.style';
+import {useMutation} from '@tanstack/react-query';
+import {signup} from '../../../api/authentication';
+import {Error} from '../../atoms/Error';
 
 const SignupForm = () => {
   const navigation = useNavigation<SignupNavigationProp>();
   const [showPassword, setShowPassword] = useState(false);
+  const [signupError, setSignupError] = useState<string | undefined>(undefined);
+
+  const {mutate, isPending} = useMutation({
+    mutationFn: signup,
+    onSuccess: (_, variables) => {
+      setSignupError(undefined);
+      reset();
+      navigation.replace('OTP', {email: variables.email, password: variables.password});
+    },
+    onError: error => {
+      setSignupError(error.message);
+    },
+  });
 
   const {
     control,
     handleSubmit,
+    reset,
     formState: {errors},
   } = useForm<SignupFormData>({
     resolver: zodResolver(schema),
     defaultValues: {
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
-      phoneNumber: '',
+      profileImage: undefined,
     },
   });
   const onSubmit = (data: SignupFormData) => {
-    console.log(data);
+    mutate(data);
   };
   return (
     <KeyboardAvoidingView style={styles.container}>
@@ -37,15 +55,15 @@ const SignupForm = () => {
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInputWithError
-            label={'Name'}
-            placeholder="John Doe"
+            label={'First Name:'}
+            placeholder="John"
             onBlur={onBlur}
             onChangeText={onChange}
-            errorMessage={errors.name?.message}
+            errorMessage={errors.firstName?.message}
             value={value}
           />
         )}
-        name="name"
+        name="firstName"
       />
       <Controller
         control={control}
@@ -54,7 +72,24 @@ const SignupForm = () => {
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInputWithError
-            label={'Email'}
+            label={'Last Name:'}
+            placeholder="Doe"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            errorMessage={errors.lastName?.message}
+            value={value}
+          />
+        )}
+        name="lastName"
+      />
+      <Controller
+        control={control}
+        rules={{
+          required: true,
+        }}
+        render={({field: {onChange, onBlur, value}}) => (
+          <TextInputWithError
+            label={'Email:'}
             placeholder="x@x.x"
             onBlur={onBlur}
             onChangeText={onChange}
@@ -63,23 +98,6 @@ const SignupForm = () => {
           />
         )}
         name="email"
-      />
-      <Controller
-        control={control}
-        rules={{
-          required: true,
-        }}
-        render={({field: {onChange, onBlur, value}}) => (
-          <TextInputWithError
-            label={'Phone Number'}
-            placeholder="XXXXXXXX"
-            onBlur={onBlur}
-            onChangeText={onChange}
-            errorMessage={errors.phoneNumber?.message}
-            value={value}
-          />
-        )}
-        name="phoneNumber"
       />
       <Controller
         control={control}
@@ -103,7 +121,8 @@ const SignupForm = () => {
         label={showPassword ? 'Hide Password' : 'Show Password'}
         onPress={() => setShowPassword(prev => !prev)}
       />
-      <PressableWrapper label={'Signup'} onPress={handleSubmit(onSubmit)} />
+      <PressableWrapper disabled={isPending} label={'Signup'} onPress={handleSubmit(onSubmit)} />
+      <Error errorMessage={signupError} />
       <PressableWrapper
         label={'Login instead?'}
         onPress={() => navigation.replace('Login')}

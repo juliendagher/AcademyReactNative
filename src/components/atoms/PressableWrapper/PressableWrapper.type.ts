@@ -4,7 +4,7 @@ type PressableWrapperProps = {
   label: string;
   onPress?: () => void;
   style?: StyleProp<ViewStyle>;
-  //disabled?: boolean;
+  disabled?: boolean;
 };
 
 export type {PressableWrapperProps};

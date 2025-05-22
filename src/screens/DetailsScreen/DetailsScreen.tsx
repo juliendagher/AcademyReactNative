@@ -9,11 +9,15 @@ import {PressableWrapper} from '../../components/atoms/PressableWrapper';
 import {styles} from './DetailsScreen.style';
 import {useTheme} from '../../hooks/theme';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import { useAuthStore } from '../../stores/authentication';
 
 const DetailsScreen = () => {
   const {colors} = useTheme();
   const themedStyles = styles(colors);
   const {params} = useRoute<DetailsRouteProp>();
+  //remove next 2 lines later
+  const authState = useAuthStore(state=>state);
+  console.log(authState);
   const {id} = params;
 
   const product = data.find(item => item._id === id);

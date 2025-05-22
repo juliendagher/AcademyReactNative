@@ -4,11 +4,12 @@ import {styles} from './PressableWrapper.style';
 import {PressableWrapperProps} from './PressableWrapper.type';
 import {useTheme} from '../../../hooks/theme';
 
-const PressableWrapper = ({label, onPress, style}: PressableWrapperProps) => {
+const PressableWrapper = ({label, onPress, style, disabled}: PressableWrapperProps) => {
   const {colors} = useTheme();
   const themedStyles = styles(colors);
   return (
     <Pressable
+      disabled={disabled}
       style={({pressed}) => [
         themedStyles.button,
         pressed ? themedStyles.pressed : {},
