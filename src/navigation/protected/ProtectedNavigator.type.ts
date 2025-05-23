@@ -1,6 +1,7 @@
 type ProtectedStackParamList = {
   Main: undefined;
   Details: {id: string};
+  NewProduct: undefined;
 };
 
 type ProtectedTabParamList = {

@@ -10,6 +10,7 @@ export const useAuthStore = create<AuthState>()(
       accessToken: null,
       refreshToken: null,
       expiresAt: null,
+      isHydrated: false,
       setTokens: (
         accessToken: string,
         refreshToken: string,
@@ -20,10 +21,14 @@ export const useAuthStore = create<AuthState>()(
       },
       clearTokens: () =>
         set({accessToken: null, refreshToken: null, expiresAt: null}),
+      setIsHydrated: (isHydrated: boolean) => set({isHydrated}),
     }),
     {
       name: 'AUTH_STATE',
       storage: createJSONStorage(() => secureStorage),
+      onRehydrateStorage: () => state => {
+        state?.setIsHydrated(true);
+      },
     },
   ),
 );

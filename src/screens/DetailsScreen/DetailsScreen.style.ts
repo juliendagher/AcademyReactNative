@@ -19,8 +19,13 @@ const styles = (colors: {
       padding: scale(20),
       gap: verticalScale(10),
     },
+    imageContainer: {
+      width: scale(375),
+      aspectRatio: '1/1',
+      height: 'auto',
+    },
     image: {
-      width: '100%',
+      width: scale(375),
       aspectRatio: '1/1',
       height: 'auto',
       borderRadius: scale(30),

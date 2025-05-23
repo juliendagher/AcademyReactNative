@@ -9,6 +9,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {SettingsScreen} from '../../screens/SettingsScreen';
 import {useTheme} from '../../hooks/theme';
 import {verticalScale} from '../../utils/scaling/scale';
+import { NewProductScreen } from '../../screens/NewProductScreen';
 
 const Stack = createNativeStackNavigator<ProtectedStackParamList>();
 const Tab = createBottomTabNavigator<ProtectedTabParamList>();
@@ -18,6 +19,7 @@ const HomeStack = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Main" component={MainScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen name="NewProduct" component={NewProductScreen} />
     </Stack.Navigator>
   );
 };

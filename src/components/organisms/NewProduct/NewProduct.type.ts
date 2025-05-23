@@ -1,0 +1,18 @@
+import {z} from 'zod';
+
+const schema = z.object({
+  title: z.string().min(1, 'Title cannot be empty'),
+  description: z.string().min(1, 'Description cannot be empty'),
+  price: z.number(),
+  location: z.object({
+    name: z.string(),
+    latitude: z.number(),
+    longitude: z.number(),
+  }),
+  images: z.array(z.string()),
+});
+
+type NewProductFormData = z.infer<typeof schema>;
+
+export {schema};
+export type {NewProductFormData};

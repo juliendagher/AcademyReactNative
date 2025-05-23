@@ -2,7 +2,7 @@ type ProductCardProps = {
   id: string;
   title: string;
   price: number;
-  mainImageUri: string;
+  mainImageUri?: string;
 };
 
 export type {ProductCardProps};

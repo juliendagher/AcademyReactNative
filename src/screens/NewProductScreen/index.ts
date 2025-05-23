@@ -1,0 +1,1 @@
+export {NewProductScreen} from './NewProductScreen';
