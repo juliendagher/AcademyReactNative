@@ -30,7 +30,7 @@ const addProduct = async (
     description,
     price,
     images,
-  }: {title: string; description: string; price: number; images: string[]},
+  }: {title: string; description: string; price: string; images: string[]},
 ) => {
   const formData = new FormData();
   formData.append('title', title);

@@ -3,7 +3,7 @@ import {z} from 'zod';
 const schema = z.object({
   title: z.string().min(1, 'Title cannot be empty'),
   description: z.string().min(1, 'Description cannot be empty'),
-  price: z.number(),
+  price: z.string(),
   location: z.object({
     name: z.string(),
     latitude: z.number(),
