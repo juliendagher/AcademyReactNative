@@ -1,4 +1,4 @@
-import {KeyboardAvoidingView, ScrollView, View, Text} from 'react-native';
+import {KeyboardAvoidingView, ScrollView, View} from 'react-native';
 import {Controller, useForm} from 'react-hook-form';
 import React, {useState} from 'react';
 import {NewProductFormData, schema} from './NewProduct.type';
@@ -117,12 +117,7 @@ const NewProduct = () => {
                 <Image
                   key={index}
                   source={{uri}}
-                  style={{
-                    width: 100,
-                    height: 100,
-                    marginRight: 8,
-                    borderRadius: 8,
-                  }}
+                  style={styles.image}
                 />
               ))}
             </ScrollView>
@@ -138,9 +133,7 @@ const NewProduct = () => {
                 }
               }}
             />
-            {errors.images?.message && (
-              <Text style={{color: 'red'}}>{errors.images.message}</Text>
-            )}
+            <Error errorMessage={errors.images?.message} />
           </View>
         )}
       />
