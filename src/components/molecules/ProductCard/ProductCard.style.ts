@@ -1,5 +1,9 @@
 import {StyleSheet} from 'react-native';
-import { normalizeFontSize, scale, verticalScale } from '../../../utils/scaling/scale';
+import {
+  normalizeFontSize,
+  scale,
+  verticalScale,
+} from '../../../utils/scaling/scale';
 
 const styles = (colors: {
   primary: string;
@@ -29,4 +33,30 @@ const styles = (colors: {
     },
   });
 
-export {styles};
+const skeletonStyles = {
+  container: {
+    width: scale(172),
+    borderRadius: scale(10),
+    padding: scale(10),
+    marginBottom: verticalScale(12),
+  },
+  image: {
+    width: scale(152),
+    height: scale(152),
+    borderRadius: scale(10),
+  },
+  title: {
+    width: scale(100),
+    height: verticalScale(14),
+    borderRadius: scale(4),
+    marginTop: verticalScale(10),
+  },
+  price: {
+    width: scale(60),
+    height: verticalScale(14),
+    borderRadius: scale(4),
+    marginTop: verticalScale(6),
+  },
+};
+
+export {styles, skeletonStyles};

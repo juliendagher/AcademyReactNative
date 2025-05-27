@@ -1,12 +1,12 @@
 import {FlatList, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
-import {ProductCard} from '../../molecules/ProductCard';
+import {ProductCard, ProductCardSkeleton} from '../../molecules/ProductCard';
 import {styles} from './Products.style';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useAuthStore} from '../../../stores/authentication';
 import {useInfiniteQuery, useQuery} from '@tanstack/react-query';
 import {getProducts} from '../../../api/products';
-import {LoadingScreen} from '../../../screens/LoadingScreen';
+// import {LoadingScreen} from '../../../screens/LoadingScreen';
 import {useTheme} from '../../../hooks/theme';
 import {getProductsWithQuery} from '../../../api/products/products';
 import {PressableWrapper} from '../../atoms/PressableWrapper';
@@ -32,6 +32,7 @@ const Products = () => {
     isFetchingNextPage,
     isLoading,
     refetch,
+    isRefetching,
   } = useInfiniteQuery({
     queryKey: ['products'],
     queryFn: ({pageParam}) => getProducts(accessToken as string, pageParam),
@@ -88,10 +89,6 @@ const Products = () => {
     );
   }
 
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <SafeAreaView>
       <View style={themedStyles.inputContainer}>
@@ -115,29 +112,40 @@ const Products = () => {
           }}
         />
       </View>
-      <FlatList
-        data={productsToDisplay}
-        numColumns={2}
-        columnWrapperStyle={themedStyles.columnWrapper}
-        contentContainerStyle={themedStyles.productContainer}
-        renderItem={({item}) => (
-          <ProductCard
-            id={item._id}
-            title={item.title}
-            price={item.price}
-            mainImageUri={item.images[0].url}
-          />
-        )}
-        keyExtractor={item => item._id}
-        onEndReached={() => {
-          if (hasNextPage && !isFetchingNextPage) {
-            fetchNextPage();
-          }
-        }}
-        onEndReachedThreshold={2}
-        refreshing={refreshing}
-        onRefresh={onRefresh}
-      />
+      {isLoading || isRefetching ? (
+        <FlatList
+          data={Array.from({length: 6})}
+          numColumns={2}
+          columnWrapperStyle={themedStyles.columnWrapper}
+          contentContainerStyle={themedStyles.productContainer}
+          keyExtractor={(_, index) => `skeleton-${index}`}
+          renderItem={() => <ProductCardSkeleton />}
+        />
+      ) : (
+        <FlatList
+          data={productsToDisplay}
+          numColumns={2}
+          columnWrapperStyle={themedStyles.columnWrapper}
+          contentContainerStyle={themedStyles.productContainer}
+          renderItem={({item}) => (
+            <ProductCard
+              id={item._id}
+              title={item.title}
+              price={item.price}
+              mainImageUri={item.images[0].url}
+            />
+          )}
+          keyExtractor={item => item._id}
+          onEndReached={() => {
+            if (hasNextPage && !isFetchingNextPage) {
+              fetchNextPage();
+            }
+          }}
+          onEndReachedThreshold={2}
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />
+      )}
     </SafeAreaView>
   );
 };
