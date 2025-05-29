@@ -1,4 +1,4 @@
-import {Text, Pressable, Image, View, Alert} from 'react-native';
+import {Text, Pressable, Image, View} from 'react-native';
 import React from 'react';
 import {Label} from '../../atoms/Label';
 import {ProductCardProps} from './ProductCard.type';
@@ -9,12 +9,16 @@ import {ProtectedStackParamList} from '../../../navigation';
 import {useTheme} from '../../../hooks/theme';
 import Config from 'react-native-config';
 import {PressableWrapper} from '../../atoms/PressableWrapper';
+import {useCartStore} from '../../../stores/cart';
 
 const ProductCard = ({id, title, price, mainImageUri}: ProductCardProps) => {
+  const {add, exists} = useCartStore();
   const {colors} = useTheme();
   const themedStyles = styles(colors);
   const navigation =
     useNavigation<NativeStackNavigationProp<ProtectedStackParamList, 'Main'>>();
+
+  const disabled = exists(id);
   const fullImageUrl = `${Config.BASE_URL}${mainImageUri}`;
   return (
     <Pressable
@@ -26,7 +30,12 @@ const ProductCard = ({id, title, price, mainImageUri}: ProductCardProps) => {
           <Label title={title} />
           <Text style={themedStyles.text}>Price: {price}$</Text>
         </View>
-        <PressableWrapper style={{width: '25%'}} label="+" onPress={() => Alert.alert('hi')} />
+        <PressableWrapper
+          disabled={disabled}
+          style={{width: '25%'}}
+          label={disabled ? 'In' : '+'}
+          onPress={() => add(id, title)}
+        />
       </View>
     </Pressable>
   );

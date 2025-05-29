@@ -10,6 +10,7 @@ import {SettingsScreen} from '../../screens/SettingsScreen';
 import {useTheme} from '../../hooks/theme';
 import {verticalScale} from '../../utils/scaling/scale';
 import { NewProductScreen } from '../../screens/NewProductScreen';
+import { CartItemsScreen } from '../../screens/CartItemsScreen';
 
 const Stack = createNativeStackNavigator<ProtectedStackParamList>();
 const Tab = createBottomTabNavigator<ProtectedTabParamList>();
@@ -44,6 +45,14 @@ const ProtectedNavigator = () => {
         component={HomeStack}
         options={{
           tabBarLabel: 'Shop',
+          tabBarActiveTintColor: colors.tertiary,
+        }}
+      />
+      <Tab.Screen
+        name="Cart"
+        component={CartItemsScreen}
+        options={{
+          tabBarLabel: 'Cart',
           tabBarActiveTintColor: colors.tertiary,
         }}
       />

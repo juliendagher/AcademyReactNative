@@ -6,6 +6,7 @@ type CartItem = {
 
 type CartState = {
   items: CartItem[];
+  exists: (id:string) => boolean;
   add: (id: string, name: string) => void;
   remove: (id: string) => void;
   increment: (id: string) => void;

@@ -6,6 +6,7 @@ type ProtectedStackParamList = {
 
 type ProtectedTabParamList = {
   Home: undefined;
+  Cart: undefined;
   Settings: undefined;
 };
 
