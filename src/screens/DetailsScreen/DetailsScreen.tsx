@@ -83,6 +83,7 @@ const DetailsScreen = () => {
             label="Contact seller"
             onPress={() => Alert.alert(product.user.email)}
           />
+          <PressableWrapper label="Add to cart" />
           <PressableWrapper label="Share" />
         </View>
       </ScrollView>

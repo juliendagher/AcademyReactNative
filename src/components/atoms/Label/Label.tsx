@@ -7,7 +7,15 @@ import {useTheme} from '../../../hooks/theme';
 const Label = ({title}: LabelProps) => {
   const {colors} = useTheme();
   const themedStyles = styles(colors);
-  return <>{title && <Text style={themedStyles.label}>{title}</Text>}</>;
+  return (
+    <>
+      {title && (
+        <Text numberOfLines={1} style={themedStyles.label}>
+          {title}
+        </Text>
+      )}
+    </>
+  );
 };
 
 export {Label};

@@ -1,4 +1,4 @@
-import {Text, Pressable, Image, View} from 'react-native';
+import {Text, Pressable, Image, View, Alert} from 'react-native';
 import React from 'react';
 import {Label} from '../../atoms/Label';
 import {ProductCardProps} from './ProductCard.type';
@@ -8,6 +8,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {ProtectedStackParamList} from '../../../navigation';
 import {useTheme} from '../../../hooks/theme';
 import Config from 'react-native-config';
+import {PressableWrapper} from '../../atoms/PressableWrapper';
 
 const ProductCard = ({id, title, price, mainImageUri}: ProductCardProps) => {
   const {colors} = useTheme();
@@ -19,13 +20,13 @@ const ProductCard = ({id, title, price, mainImageUri}: ProductCardProps) => {
     <Pressable
       style={themedStyles.container}
       onPress={() => navigation.navigate('Details', {id: id})}>
-      <Image
-        style={themedStyles.image}
-        source={{uri: fullImageUrl}}
-      />
-      <View>
-        <Label title={title} />
-        <Text style={themedStyles.text}>Price: {price}$</Text>
+      <Image style={themedStyles.image} source={{uri: fullImageUrl}} />
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <View style={{width: '75%'}}>
+          <Label title={title} />
+          <Text style={themedStyles.text}>Price: {price}$</Text>
+        </View>
+        <PressableWrapper style={{width: '25%'}} label="+" onPress={() => Alert.alert('hi')} />
       </View>
     </Pressable>
   );
