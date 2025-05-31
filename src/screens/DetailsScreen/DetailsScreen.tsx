@@ -20,6 +20,7 @@ import {getProductById} from '../../api/products/products';
 import {useAuthStore} from '../../stores/authentication';
 import Config from 'react-native-config';
 import {LoadingScreen} from '../LoadingScreen';
+import {useCartStore} from '../../stores/cart';
 // console.log(CameraRoll);
 
 // const requestStoragePermission = async () => {
@@ -55,6 +56,7 @@ const DetailsScreen = () => {
   const themedStyles = styles(colors);
   const {params} = useRoute<DetailsRouteProp>();
   const accessToken = useAuthStore(state => state.accessToken);
+  const {add, exists} = useCartStore();
 
   const {data} = useQuery({
     queryKey: ['product', params.id],
@@ -91,7 +93,11 @@ const DetailsScreen = () => {
             label="Contact seller"
             onPress={() => Alert.alert(product.user.email)}
           />
-          <PressableWrapper label="Add to cart" />
+          <PressableWrapper
+            disabled={exists(params.id)}
+            label={exists(params.id) ? 'In Cart' : 'Add to cart'}
+            onPress={() => add(params.id, product.title)}
+          />
           <PressableWrapper
             label="Share"
             onPress={() =>
