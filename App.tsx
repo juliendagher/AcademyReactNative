@@ -4,6 +4,7 @@ import {ThemeProvider} from './src/hooks/theme';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {useAuthStore} from './src/stores/authentication';
 import {LoadingScreen} from './src/screens/LoadingScreen/LoadingScreen';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const App = () => {
   const isHydrated = useAuthStore(state => state.isHydrated);
@@ -16,7 +17,9 @@ const App = () => {
   return (
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
-        <RootNavigator />
+        <GestureHandlerRootView>
+          <RootNavigator />
+        </GestureHandlerRootView>
       </QueryClientProvider>
     </ThemeProvider>
   );
