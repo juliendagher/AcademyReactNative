@@ -1,4 +1,12 @@
-import {View, Text, Image, ScrollView, Alert, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  Alert,
+  Pressable,
+  Share,
+} from 'react-native';
 import React from 'react';
 import {useRoute} from '@react-navigation/native';
 import {DetailsRouteProp} from './DetailsScreen.type';
@@ -67,7 +75,7 @@ const DetailsScreen = () => {
             <Pressable
               key={image._id}
               // onLongPress={() => saveToGallery(image.url)}
-              >
+            >
               <Image
                 source={{uri: `${Config.BASE_URL}${image.url}`}}
                 style={themedStyles.image}
@@ -84,7 +92,14 @@ const DetailsScreen = () => {
             onPress={() => Alert.alert(product.user.email)}
           />
           <PressableWrapper label="Add to cart" />
-          <PressableWrapper label="Share" />
+          <PressableWrapper
+            label="Share"
+            onPress={() =>
+              Share.share({
+                message: `Check out this product! academyreactnative://details/${params.id}`,
+              })
+            }
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -1,3 +1,5 @@
+import {NavigatorScreenParams} from '@react-navigation/native';
+
 type ProtectedStackParamList = {
   Main: undefined;
   Details: {id: string};
@@ -5,7 +7,7 @@ type ProtectedStackParamList = {
 };
 
 type ProtectedTabParamList = {
-  Home: undefined;
+  Home: NavigatorScreenParams<ProtectedStackParamList>;
   Cart: undefined;
   Settings: undefined;
 };
