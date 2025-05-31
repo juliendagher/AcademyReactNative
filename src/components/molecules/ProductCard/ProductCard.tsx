@@ -1,4 +1,4 @@
-import {Text, Pressable, Image, View} from 'react-native';
+import {Text, Pressable, Image, View, Share} from 'react-native';
 import React from 'react';
 import {Label} from '../../atoms/Label';
 import {ProductCardProps} from './ProductCard.type';
@@ -23,7 +23,12 @@ const ProductCard = ({id, title, price, mainImageUri}: ProductCardProps) => {
   return (
     <Pressable
       style={themedStyles.container}
-      onPress={() => navigation.navigate('Details', {id: id})}>
+      onPress={() => navigation.navigate('Details', {id: id})}
+      onLongPress={() =>
+        Share.share({
+          message: `Check out this product! academyreactnative://details/${id}`,
+        })
+      }>
       <Image style={themedStyles.image} source={{uri: fullImageUrl}} />
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <View style={{width: '75%'}}>
