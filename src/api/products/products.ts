@@ -29,15 +29,27 @@ const addProduct = async (
     title,
     description,
     price,
+    location,
     images,
-  }: {title: string; description: string; price: string; images: string[]},
+  }: {
+    title: string;
+    description: string;
+    price: string;
+    location: {name: string, longitude:number, latitude: number};
+    images: {uri: string; type: string; fileName: string}[];
+  },
 ) => {
   const formData = new FormData();
   formData.append('title', title);
   formData.append('description', description);
   formData.append('price', price.toString());
+  formData.append('location', JSON.stringify(location));
   images.forEach(image => {
-    formData.append('images', image);
+    formData.append('images', {
+      uri: image.uri,
+      type: image.type || 'image/jpeg',
+      name: image.fileName || `photo-${Date.now()}.jpg`,
+    } as any);
   });
   return await a.post('api/products', formData, {
     headers: {

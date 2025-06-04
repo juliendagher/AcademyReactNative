@@ -9,7 +9,11 @@ const schema = z.object({
     latitude: z.number(),
     longitude: z.number(),
   }),
-  images: z.array(z.string()),
+  images: z.array(z.object({
+    uri: z.string(),
+    type: z.string(),
+    fileName: z.string(),
+  })),
 });
 
 type NewProductFormData = z.infer<typeof schema>;

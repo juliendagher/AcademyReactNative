@@ -16,7 +16,7 @@ import {Image} from 'react-native';
 export const pickMultipleImages = async () => {
   return await launchImageLibrary({
     mediaType: 'photo',
-    selectionLimit: 5, // or 0 for unlimited
+    selectionLimit: 5,
     quality: 0.8,
   });
 };
@@ -47,13 +47,14 @@ const NewProduct = () => {
       title: '',
       description: '',
       price: '',
-      location: {},
+      location: {name: 'testplace', latitude: 35, longitude: 35},
       images: [],
     },
   });
   const onSubmit = (data: NewProductFormData) => {
     mutate(data);
   };
+
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Controller
@@ -114,11 +115,7 @@ const NewProduct = () => {
           <View>
             <ScrollView horizontal>
               {value.map((uri, index) => (
-                <Image
-                  key={index}
-                  source={{uri}}
-                  style={styles.image}
-                />
+                <Image key={index} source={uri} style={styles.image} />
               ))}
             </ScrollView>
             <PressableWrapper
@@ -126,10 +123,7 @@ const NewProduct = () => {
               onPress={async () => {
                 const result = await pickMultipleImages();
                 if (result.assets) {
-                  const uris = result.assets
-                    .map(a => a.uri)
-                    .filter(Boolean) as string[];
-                  onChange(uris);
+                  onChange(result.assets);
                 }
               }}
             />
