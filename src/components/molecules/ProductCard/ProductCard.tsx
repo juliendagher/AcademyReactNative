@@ -1,5 +1,5 @@
 import {Text, Pressable, Image, View, Share} from 'react-native';
-import React from 'react';
+import React, { useMemo } from 'react';
 import {Label} from '../../atoms/Label';
 import {ProductCardProps} from './ProductCard.type';
 import {styles} from './ProductCard.style';
@@ -14,7 +14,7 @@ import {useCartStore} from '../../../stores/cart';
 const ProductCard = ({id, title, price, mainImageUri}: ProductCardProps) => {
   const {add, exists} = useCartStore();
   const {colors} = useTheme();
-  const themedStyles = styles(colors);
+  const themedStyles = useMemo(()=>styles(colors),[colors]);
   const navigation =
     useNavigation<NativeStackNavigationProp<ProtectedStackParamList, 'Main'>>();
 

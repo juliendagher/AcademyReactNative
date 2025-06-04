@@ -12,6 +12,7 @@ import {useAuthStore} from '../../../stores/authentication';
 import {addProduct} from '../../../api/products/products';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {Image} from 'react-native';
+import notifee from '@notifee/react-native';
 
 export const pickMultipleImages = async () => {
   return await launchImageLibrary({
@@ -21,6 +22,21 @@ export const pickMultipleImages = async () => {
   });
 };
 
+const sendNotification = async (id: string) =>
+  await notifee.displayNotification({
+    title: 'New Product!',
+    body: 'Your product has been added successfully',
+    android: {
+      channelId: 'default',
+      pressAction: {
+        id: 'default',
+      },
+    },
+    data: {
+      url: `academyreactnative://details/${id}`,
+    },
+  });
+
 const NewProduct = () => {
   const [globalError, setGlobalError] = useState<string | undefined>();
 
@@ -29,7 +45,8 @@ const NewProduct = () => {
   const {mutate, isPending} = useMutation({
     mutationFn: (data: NewProductFormData) =>
       addProduct(accessToken as string, data),
-    onSuccess: () => {
+    onSuccess: response => {
+      sendNotification(response.data._id);
       setGlobalError(undefined);
       reset();
     },

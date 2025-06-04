@@ -1,12 +1,12 @@
 import {View} from 'react-native';
-import React from 'react';
+import React, {useMemo} from 'react';
 import {SignupForm} from '../../components/organisms/SignupForm';
 import {useTheme} from '../../hooks/theme';
-import { getStyles } from './SignupScreen.style';
+import {getStyles} from './SignupScreen.style';
 
 const SignupScreen = () => {
   const {colors} = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
 
   return (
     <View style={styles.container}>

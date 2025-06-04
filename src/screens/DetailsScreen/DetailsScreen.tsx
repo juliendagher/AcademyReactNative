@@ -7,7 +7,7 @@ import {
   Pressable,
   Share,
 } from 'react-native';
-import React from 'react';
+import React, {useMemo} from 'react';
 import {useRoute} from '@react-navigation/native';
 import {DetailsRouteProp} from './DetailsScreen.type';
 import {Label} from '../../components/atoms/Label';
@@ -21,6 +21,7 @@ import {useAuthStore} from '../../stores/authentication';
 import Config from 'react-native-config';
 import {LoadingScreen} from '../LoadingScreen';
 import {useCartStore} from '../../stores/cart';
+import notifee from '@notifee/react-native';
 // console.log(CameraRoll);
 
 // const requestStoragePermission = async () => {
@@ -53,7 +54,7 @@ import {useCartStore} from '../../stores/cart';
 
 const DetailsScreen = () => {
   const {colors} = useTheme();
-  const themedStyles = styles(colors);
+  const themedStyles = useMemo(() => styles(colors), [colors]);
   const {params} = useRoute<DetailsRouteProp>();
   const accessToken = useAuthStore(state => state.accessToken);
   const {add, exists} = useCartStore();
@@ -105,6 +106,24 @@ const DetailsScreen = () => {
                 message: `Check out this product! academyreactnative://details/${params.id}`,
               })
             }
+          />
+          <PressableWrapper
+            label="notif test"
+            onPress={async () => {
+              await notifee.displayNotification({
+                title: 'New Product!',
+                body: 'Your product has been added successfully',
+                android: {
+                  channelId: 'default',
+                  pressAction: {
+                    id: 'default',
+                  },
+                },
+                data: {
+                  url: `academyreactnative://details/${params.id}`,
+                },
+              });
+            }}
           />
         </View>
       </ScrollView>

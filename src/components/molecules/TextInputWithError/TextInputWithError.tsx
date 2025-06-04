@@ -1,5 +1,5 @@
 import {View, TextInput} from 'react-native';
-import React from 'react';
+import React, {useMemo} from 'react';
 import {TextInputWithErrorProps} from './TextInputWithError.type';
 import {styles} from './TextInputWithError.style';
 import {Error} from '../../atoms/Error';
@@ -18,7 +18,7 @@ const TextInputWithError = ({
   maxLength,
 }: TextInputWithErrorProps) => {
   const {colors} = useTheme();
-  const themedStyles = styles(colors);
+  const themedStyles = useMemo(() => styles(colors), [colors]);
   return (
     <View style={[themedStyles.container, style]}>
       <Label title={label} />

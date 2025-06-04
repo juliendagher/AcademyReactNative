@@ -1,5 +1,5 @@
 import {FlatList, TextInput, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import {ProductCard, ProductCardSkeleton} from '../../molecules/ProductCard';
 import {styles} from './Products.style';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -55,24 +55,27 @@ const Products = () => {
 
   const [refreshing, setRefreshing] = useState(false);
 
-  const onRefresh = async () => {
+  const onRefresh = useCallback(async () => {
     setRefreshing(true);
     await refetch();
     setRefreshing(false);
-  };
+  }, [refetch]);
 
-  const toggleSortButton = () =>
-    setSort(prev => {
-      if (prev === 'ascending') {
-        return 'descending';
-      } else if (prev === 'descending') {
-        return null;
-      } else {
-        return 'ascending';
-      }
-    });
+  const toggleSortButton = useCallback(
+    () =>
+      setSort(prev => {
+        if (prev === 'ascending') {
+          return 'descending';
+        } else if (prev === 'descending') {
+          return null;
+        } else {
+          return 'ascending';
+        }
+      }),
+    [],
+  );
 
-  const themedStyles = styles(colors);
+  const themedStyles = useMemo(() => styles(colors), [colors]);
 
   const products = productsWrapper?.pages.flatMap(page => page.data) ?? [];
   const searchResult = !isError && (searchResultWrapper?.data.data ?? []);
