@@ -6,5 +6,4 @@ module.exports = {
     </>
   ),
   GestureHandlerRootView: ({children}) => children,
-  // Add anything else you use
 };
