@@ -77,21 +77,28 @@ const Products = () => {
 
   const themedStyles = useMemo(() => styles(colors), [colors]);
 
-  const products = productsWrapper?.pages.flatMap(page => page.data) ?? [];
-  const searchResult = !isError && (searchResultWrapper?.data.data ?? []);
+  const products = useMemo(
+    () => productsWrapper?.pages.flatMap(page => page.data) ?? [],
+    [productsWrapper?.pages],
+  );
+  const searchResult = useMemo(
+    () => !isError && (searchResultWrapper?.data.data ?? []),
+    [searchResultWrapper?.data.data, isError],
+  );
 
-  const productsToDisplay = query.length > 0 ? searchResult : products;
+  const productsToDisplay = useMemo(() => {
+    const base = query.length > 0 ? searchResult : products;
 
-  if (sort === 'ascending') {
-    productsToDisplay.sort(
-      (a: {price: number}, b: {price: number}) => a.price - b.price,
-    );
-  } else if (sort === 'descending') {
-    productsToDisplay.sort(
-      (a: {price: number}, b: {price: number}) => b.price - a.price,
-    );
-  }
+    const sorted = [...base];
 
+    if (sort === 'ascending') {
+      sorted.sort((a, b) => a.price - b.price);
+    } else if (sort === 'descending') {
+      sorted.sort((a, b) => b.price - a.price);
+    }
+
+    return sorted;
+  }, [query, sort, products, searchResult]);
   return (
     <SafeAreaView>
       <View style={themedStyles.inputContainer}>
