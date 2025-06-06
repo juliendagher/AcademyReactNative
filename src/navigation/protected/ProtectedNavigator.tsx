@@ -12,7 +12,6 @@ import {verticalScale} from '../../utils/scaling/scale';
 import {NewProductScreen} from '../../screens/NewProductScreen';
 import {CartItemsScreen} from '../../screens/CartItemsScreen';
 import {getCrashlytics, setUserId} from '@react-native-firebase/crashlytics';
-import {PermissionsAndroid} from 'react-native';
 
 const Stack = createNativeStackNavigator<ProtectedStackParamList>();
 const Tab = createBottomTabNavigator<ProtectedTabParamList>();
@@ -32,8 +31,6 @@ const ProtectedNavigator = () => {
 
   const crashlytics = getCrashlytics();
   setUserId(crashlytics, '123');
-
-  PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
   return (
     <Tab.Navigator
