@@ -13,6 +13,7 @@ import {addProduct} from '../../../api/products/products';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {Image} from 'react-native';
 import notifee from '@notifee/react-native';
+import {crash, getCrashlytics} from '@react-native-firebase/crashlytics';
 
 export const pickMultipleImages = async () => {
   return await launchImageLibrary({
@@ -68,6 +69,9 @@ const NewProduct = () => {
       images: [],
     },
   });
+
+  const crashlytics = getCrashlytics();
+
   const onSubmit = (data: NewProductFormData) => {
     mutate(data);
   };
@@ -153,6 +157,12 @@ const NewProduct = () => {
         disabled={isPending}
         label={isPending ? 'Adding...' : 'Add'}
         onPress={handleSubmit(onSubmit)}
+      />
+      <PressableWrapper
+        label="Crash"
+        onPress={() => {
+          crash(crashlytics);
+        }}
       />
     </KeyboardAvoidingView>
   );

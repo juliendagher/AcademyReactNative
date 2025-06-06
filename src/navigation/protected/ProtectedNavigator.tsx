@@ -9,8 +9,10 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {SettingsScreen} from '../../screens/SettingsScreen';
 import {useTheme} from '../../hooks/theme';
 import {verticalScale} from '../../utils/scaling/scale';
-import { NewProductScreen } from '../../screens/NewProductScreen';
-import { CartItemsScreen } from '../../screens/CartItemsScreen';
+import {NewProductScreen} from '../../screens/NewProductScreen';
+import {CartItemsScreen} from '../../screens/CartItemsScreen';
+import {getCrashlytics, setUserId} from '@react-native-firebase/crashlytics';
+import {PermissionsAndroid} from 'react-native';
 
 const Stack = createNativeStackNavigator<ProtectedStackParamList>();
 const Tab = createBottomTabNavigator<ProtectedTabParamList>();
@@ -27,6 +29,12 @@ const HomeStack = () => {
 
 const ProtectedNavigator = () => {
   const {colors} = useTheme();
+
+  const crashlytics = getCrashlytics();
+  setUserId(crashlytics, '123');
+
+  PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
+
   return (
     <Tab.Navigator
       screenOptions={{
